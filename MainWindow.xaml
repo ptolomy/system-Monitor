@@ -1,0 +1,260 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SystemMonitor"
+        xmlns:Timers="clr-namespace:System.Timers;assembly=System" x:Class="SystemMonitor.MainWindow"
+        mc:Ignorable="d"
+        Title="System Monitor v0.2" Height="510.811" Width="712.994" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem x:Name="CloseProgram" Header="_Close" Click="CloseProgram_Click" />
+                </MenuItem>
+                <MenuItem Header="_Help" />
+                <MenuItem Header="_Report" Click="MenuItem_Click" />
+            </Menu>
+            <StackPanel>
+                <Grid x:Name="lblCores" Height="457" Width="697">
+                    <TabControl HorizontalAlignment="Left" Height="457" VerticalAlignment="Top" Width="701">
+                        <TabItem Header="TabItem">
+                            <Grid Background="#FFE5E5E5" Margin="0,0,-2,0" HorizontalAlignment="Left" Width="697">
+
+
+                                <Label x:Name="lblsysinfo" Content="System Hardware" HorizontalAlignment="Left" Margin="95,13,0,0" VerticalAlignment="Top" Width="113"/>
+                                <Label x:Name="lblCPUFreq" Content="CPU Frequency" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="97" Height="26">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="cpuFreq" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="116,57,0,0" TextWrapping="Wrap" Text="Freq" VerticalAlignment="Top" Width="55" Foreground="#FFFF0E0E">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content=".Mhz" HorizontalAlignment="Left" Margin="171,54,0,0" VerticalAlignment="Top" Width="37" Height="26">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <Label x:Name="Core_Count" Content="Core Count" HorizontalAlignment="Left" Margin="223,54,0,0" VerticalAlignment="Top" Width="81" Height="25">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="coreCountTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="295,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Text="Threads" Foreground="#FFFF0808">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <TextBox x:Name="coreThreadText" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="350,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" Foreground="#FFFF0505">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="C/T" HorizontalAlignment="Left" Margin="396,57,0,0" VerticalAlignment="Top" Height="23">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <Label x:Name="lblCpuID" Content="CPU " HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="cpuIDtxt" IsReadOnly="true" HorizontalAlignment="Left" Height="57" Margin="116,88,0,0" TextWrapping="Wrap" Text="CPU ID" VerticalAlignment="Top" Width="164" Foreground="#FFFF3232">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="L2 Cache" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="74">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="l2CacheZTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="116,151,0,0" TextWrapping="Wrap" Text="Size" VerticalAlignment="Top" Width="55" Foreground="#FFFF0606">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="kb" HorizontalAlignment="Left" Margin="171,151,0,0" VerticalAlignment="Top" Height="23">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <Label Content="L3 Cache" HorizontalAlignment="Left" Margin="12,179,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="l2cacheSTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="116,179,0,0" TextWrapping="Wrap" Text="Size" VerticalAlignment="Top" Width="55" Foreground="Red">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="kb" HorizontalAlignment="Left" Margin="171,179,0,0" VerticalAlignment="Top" Height="23">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <Label x:Name="lblMemory" Content="Ram" HorizontalAlignment="Left" Margin="13,206,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="1.367,3.528">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="ramTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="116,206,0,0" TextWrapping="Wrap" Text="Ram" VerticalAlignment="Top" Width="55" Foreground="Red">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label x:Name="mbLbl" Content="Mb" HorizontalAlignment="Left" Margin="171,206,0,0" VerticalAlignment="Top" Height="23">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <Label Content="Max Memory" HorizontalAlignment="Left" Margin="204,206,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="maxMemtxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="289,206,0,0" TextWrapping="Wrap" Text="Max" VerticalAlignment="Top" Width="48" Foreground="Red">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="Gb" HorizontalAlignment="Left" Margin="337,206,0,0" VerticalAlignment="Top" Height="23">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <Label Content="GPU" HorizontalAlignment="Left" Margin="12,237,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="gpuTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="40" Margin="117,234,0,0" TextWrapping="Wrap" Text="GPU" VerticalAlignment="Top" Width="198" Foreground="#FF263AFF">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="Max refresh Rate" HorizontalAlignment="Left" Margin="13,279,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="gpuRefreshTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="117,279,0,0" TextWrapping="Wrap" Text="fps" VerticalAlignment="Top" Width="41" Foreground="#FF263AFF">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label x:Name="lblosinfo" Content="System Information" HorizontalAlignment="Left" Margin="514,18,0,0" VerticalAlignment="Top" Width="136"/>
+                                <Label x:Name="System_Name" Content="System Name" HorizontalAlignment="Left" Margin="479,57,0,0" VerticalAlignment="Top" Width="92">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="sysNameTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="43" Margin="586,58,0,0" TextWrapping="Wrap" Text="Sys" VerticalAlignment="Top" Width="97" Foreground="#FFF7811E">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label x:Name="osName" Content="Operating System&#xA;Version" HorizontalAlignment="Left" Margin="479,102,0,0" VerticalAlignment="Top" Width="107" Height="43">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="osNameTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="59" Margin="586,106,0,0" TextWrapping="Wrap" Text="OS" VerticalAlignment="Top" Width="97" Foreground="#FFFF831C">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label x:Name="userNamelbl" Content="User name" HorizontalAlignment="Left" Margin="479,166,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="userNameTxt" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="586,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Foreground="#FFFF8621">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label x:Name="lbl64Bit" Content="64Bit OS" HorizontalAlignment="Left" Margin="479,194,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="is64BitTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="586,198,0,0" TextWrapping="Wrap" Text="64Bit?" VerticalAlignment="Top" Width="97" Foreground="#FFFF841E">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label x:Name="lblmoboid" Content="Motherboard &#xA;Manufacturer" HorizontalAlignment="Left" Margin="479,225,0,0" VerticalAlignment="Top" Height="42" Width="86">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="moboIDTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="51" Margin="586,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Text="M/B" Foreground="#FFFB7C13">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="Motherboard &#xA;Model" HorizontalAlignment="Left" Margin="479,278,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="modelTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="45" Margin="586,282,0,0" TextWrapping="Wrap" Text="Model" VerticalAlignment="Top" Width="97" Foreground="#FFFB7C13">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="Bios Version" HorizontalAlignment="Left" Margin="479,328,0,0" VerticalAlignment="Top">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="biosTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="66" Margin="586,332,0,0" TextWrapping="Wrap" Text="Bios" VerticalAlignment="Top" Width="97" Foreground="#FFFB7C13">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Label Content="Ip Address (IPV4)" HorizontalAlignment="Left" Margin="132,389,0,0" VerticalAlignment="Top" Width="106">
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </Label.Effect>
+                                </Label>
+                                <TextBox x:Name="ipListTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="26" Margin="238,389,0,0" TextWrapping="Wrap" Text="Ip Address" VerticalAlignment="Top" Width="164" Foreground="#FF4C8100">
+                                    <TextBox.Effect>
+                                        <DropShadowEffect Color="#FF0089FB" Opacity="0.5" ShadowDepth="3" BlurRadius="8"/>
+                                    </TextBox.Effect>
+                                </TextBox>
+                                <Button x:Name="getFreq" Content="Load System" HorizontalAlignment="Left" Margin="305,16,0,0" VerticalAlignment="Top" Width="75" Click="GetFreq_Click"/>
+                                <Rectangle Fill="Black" HorizontalAlignment="Left" Height="365" Margin="462,57,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+                                <Rectangle Fill="Black" HorizontalAlignment="Left" Height="1" Margin="10,367,0,0" Stroke="Black" VerticalAlignment="Top" Width="452"/>
+                            </Grid>
+
+                        </TabItem>
+                        <TabItem x:Name="liveTab" Header="TabItem">
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="Actual CPU Usage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="195,133,0,0"/>
+                                <TextBox x:Name="actualCpuTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="368,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83" Foreground="Red">
+                                </TextBox>
+                                <Button x:Name="Begin_Threading" Content="Begin Threading" HorizontalAlignment="Left" Margin="195,51,0,0" VerticalAlignment="Top" Width="93" Height="28"/>
+                                <Button x:Name="EndThreading" Content="End Threading" HorizontalAlignment="Left" Margin="368,51,0,0" VerticalAlignment="Top" Width="93" Height="28"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="TabItem" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="IP Address list" HorizontalAlignment="Left" Margin="28,33,0,0" VerticalAlignment="Top" Width="100"/>
+                                <TextBox x:Name="ipTxt" IsReadOnly="true" HorizontalAlignment="Left" Height="339" Margin="145,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="265"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+
+                </Grid>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
